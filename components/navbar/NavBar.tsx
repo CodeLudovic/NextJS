@@ -5,6 +5,7 @@ import {
 	PersonIcon,
 } from "@primer/octicons-react";
 import Link from "next/link";
+import { ActiveLink } from "../active-link/ActiveLink";
 
 const navItems = [
 	{ path: "/pricing", label: "Pricing", icon: <OrganizationIcon size={16} /> },
@@ -22,14 +23,12 @@ export const NavBar = async () => {
 
 			<div className="flex flex-1"></div>
 
-			{navItems.map((navItem) => (
-				<Link
-					href={navItem.path}
-					key={navItem.path}
-					className="flex items-center gap-1 ml-6">
-					<p className="mr-1">{navItem.icon}</p>
-					{navItem.label}
-				</Link>
+			{navItems.map((navItem, index) => (
+				<div className="flex flex-row items-center mr-3 gap-1" key={index}>
+					{navItem.icon}
+					{/* el spread operator traer las propiedades del objeto navItem */}
+					<ActiveLink {...navItem} />
+				</div>
 			))}
 		</nav>
 	);
